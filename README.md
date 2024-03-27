@@ -26,14 +26,21 @@
 2. Outputs a set of super-resolved images (one per frame), based on prior training performed on simulated or experimentally obtained images with known emitter positions
 3. The output images are then summed to produce a single super-resolved image.
 
+1. Thy stimulate SMLM data(We acan provide custom data as well) and then train he model to provide necessary weights and parameters.
+2. Then they use this pre trained model and run it on the new custom dataset.
+
 ## Installing Dependencies(Local environment)
 1. An environment.yml file is given. Use ``` !conda env create --force -f environment.yml ``` in the terminal to make the environment. The name of the environment is *deep-storm*
 2. Some issues I faced while installing were inconsistencies in the following: ```- icc_rt=2019.0.0```, ```- intel-openmp=2019.5```, ```- vc=14.1```, ```- vs2015_runtime=14.16.27012```. I also faced issues in resolving the environment hence used --force.
-3. I made the following corrections to the environment.yml file as the environment was not getting resolved, the modified version is environment2.yml.
+3. The environment was still not getting solved, so I created an new tensorflow environment with ``` conda create -n DeepSTORM tensorflow ```
+4. The following had to be installed after that:
+``` conda install pip ```, ``` conda update -n base -c defaults conda```, ``` conda install ipykernel```, ``` conda install pip ```, ``` conda install pip ```, ``` conda install pip ```, ``` conda install pip ```
 
 ## Colab
 1. Due to RAM limitations on colab, I changed the parameter of *num_patches_per_frame* from 500 to 200. *All* other parameters were kept the same.
 2. The model created by the samle data, called *SampleData_model* is listed here for further use.
 
 ### 1st iteraton on Sample data BIN 10
-1 This was run successfully with results saved in google drive folder *
+1 This was run successfully with results saved in google drive folder *Results*
+2 While trying to run the model(predictions not training) on custom tiff file, the function *getPixelSizeTIFFmetadata* was throwing errors, specifically the ```with Image.open(TIFFpath) as img:
+    meta_dict = {TAGS[key] : img.tag[key] for key in img.tag.keys()}``` part.
